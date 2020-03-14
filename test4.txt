@@ -1,0 +1,35 @@
+#include <stdio.h>     
+#include <string.h>     
+#include <stdlib.h>      
+#include <Windows.h>    
+#include <assert.h>
+#include<iostream>
+void gotoxy(int x, int y)
+{
+ COORD pos; pos.X = x - 1; pos.Y = y - 1;  
+ SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}
+int main()
+{
+  system("color f0");
+  system("mode con cols=80 lines=30");
+  long i;       
+  char FileName[100];    
+  char xia[10000];     
+  FILE *in;  
+  for (i = 1; i <= 62; i++)
+{
+  sprintf(FileName, "D:\\Users\\samsung\\Desktop\\c语言\\字符动画2\\yourenzhang\\(%d).txt", i);
+ 
+  in = fopen(FileName, "r");
+  assert(in != NULL);  
+ 
+  fread(xia, 1, 10000, in);
+ 
+  printf("%s\n%d", xia, i);
+  gotoxy(1, 1);   
+  Sleep(130);
+  fclose(in);
+ }
+system("pause");
+}
